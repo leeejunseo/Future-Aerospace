@@ -277,3 +277,70 @@ canvas {
 ::-webkit-scrollbar-track { background: var(--main-content-color); border-radius: 10px; }
 ::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--highlight-color); }
+
+/* =============================================== */
+/* 반응형 웹 디자인을 위한 미디어 쿼리 (Responsive Web Design) */
+/* 화면 너비가 800px 이하일 때 적용됩니다. */
+/* =============================================== */
+
+@media screen and (max-width: 800px) {
+
+    body {
+        /* 모바일에서는 스크롤이 필요하므로 overflow 해제 */
+        overflow: auto; 
+        height: auto;
+        padding: 0;
+    }
+
+    .main-container {
+        /* flex 방향을 세로로 변경 (사이드바가 위로, 메인 콘텐츠가 아래로) */
+        flex-direction: column; 
+        height: auto;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .sidebar {
+        /* 너비를 100%로 설정하고, 높이는 자동으로 조절 */
+        width: 100%;
+        height: auto;
+        border-right: none; /* 세로 경계선 제거 */
+        border-bottom: 1px solid rgba(255,255,255,0.1); /* 하단 경계선 추가 */
+    }
+
+    .main-content {
+        padding: 10px; /* 모바일용 여백 축소 */
+    }
+
+    #canvas-container {
+        /* 캔버스 비율 유지 (예: 4:3 비율) */
+        height: 75vw; /* 너비의 75%를 높이로 설정 */
+        min-height: 300px; /* 최소 높이 보장 */
+    }
+    
+    .bottom-panel {
+        /* 하단 패널도 세로로 변경 */
+        flex-direction: column;
+        height: auto; /* 높이 자동 조절 */
+    }
+
+    .status-panel, .log-panel {
+        /* 각 패널이 하단 공간을 모두 차지하도록 함 */
+        flex-basis: auto;
+        height: 200px; /* 스크롤을 위해 고정 높이 유지 */
+    }
+
+    /* 폰트 크기 미세 조정 */
+    .sidebar h2 {
+        font-size: 1.3em;
+    }
+
+    .button-group button {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .instructions h3, #info-panel h3 {
+        font-size: 1em;
+    }
+}
