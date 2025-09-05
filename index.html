@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 지휘관 MUM-T 시뮬레이션</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+    <script src="sketch.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="sidebar">
+            <h2>AI 작전 통제 패널</h2>
+            
+            <div class="control-group">
+                <label for="uav-slider">UAV 윙맨 수: <span id="uav-count">5</span></label>
+                <input type="range" id="uav-slider" min="1" max="10" value="5">
+            </div>
+            
+            <div class="control-group">
+                <label for="target-slider">표적 수: <span id="target-count">8</span></label>
+                <input type="range" id="target-slider" min="1" max="20" value="8">
+            </div>
+
+            <div class="control-group">
+                <label for="sam-slider">SAM 기지 수: <span id="sam-count">3</span></label>
+                <input type="range" id="sam-slider" min="0" max="8" value="3">
+            </div>
+
+            <div class="button-group">
+                <button id="ai-all-out-btn" class="mode-btn">AI 전면 공격 모드</button>
+                <button id="ai-mumt-btn" class="mode-btn">AI 지휘관 (MUM-T) 모드</button>
+                <button id="reset-btn" class="reset-btn">시뮬레이션 초기화</button>
+            </div>
+
+            <div class="instructions">
+                <h3><i class="fas fa-info-circle"></i> 모드 설명</h3>
+                <p><strong>전면 공격:</strong> 모든 UAV가 사전 계산된 최적 표적으로 동시 돌격합니다.</p>
+                <p><strong>지휘관(MUM-T):</strong> AI 유인기가 안전궤도를 비행하며, 상황을 판단하여 UAV에게 순차적으로 임무를 부여합니다.</p>
+            </div>
+
+            <div id="info-panel" class="info-summary">
+                <h3><i class="fas fa-chart-line"></i> 작전 요약</h3>
+                <p><strong>모드:</strong> <span id="mode-display">대기 중</span></p>
+                <p><strong>경과 시간:</strong> <span id="time-display">0</span> Ticks</p>
+                <p><strong>파괴된 표적:</strong> <span id="targets-destroyed-display">0 / 8</span></p>
+                <p><strong>생존 UAV:</strong> <span id="uav-survival-display">5 / 5</span></p>
+                <p><strong>유인기 상태:</strong> <span id="fighter-status-display">N/A</span></p>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div id="canvas-container"></div>
+            <div class="bottom-panel">
+                <div class="status-panel">
+                    <h3><i class="fas fa-satellite-dish"></i> UAV 실시간 상태</h3>
+                    <div class="table-container">
+                        <table id="uav-status-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>표적</th>
+                                    <th>상태</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="log-panel">
+                    <h3><i class="fas fa-clipboard-list"></i> 이벤트 로그</h3>
+                    <div id="event-log">
+                        <p>시뮬레이션을 시작하십시오...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

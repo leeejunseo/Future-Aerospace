@@ -1,0 +1,279 @@
+:root {
+    --bg-color: #1a1a2e;
+    --sidebar-color: #16213e;
+    --main-content-color: #0f3460;
+    --text-color: #e9ecef;
+    --highlight-color: #e94560; /* 강렬한 빨강/자주 */
+    --accent-color: #53a8b6;   /* 청록색 */
+    --grid-line-color: rgba(40, 70, 100, 0.5); /* 어두운 격자 */
+    --safe-color: #28a745;      /* 안전, 녹색 */
+    --warning-color: #ffc107;   /* 경고, 노랑 */
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    overflow: hidden;
+    display: flex; /* 중앙 정렬을 위해 추가 */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.main-container {
+    display: flex;
+    height: 95vh; /* 화면에 꽉 차게 */
+    width: 98vw;
+    border-radius: 10px;
+    background-color: var(--bg-color); /* 전체 컨테이너 배경색 */
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    overflow: hidden; /* 모서리 둥글게 */
+}
+
+.sidebar {
+    width: 320px;
+    background-color: var(--sidebar-color);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.sidebar h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--highlight-color);
+    text-align: center;
+    border-bottom: 2px solid var(--highlight-color);
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.control-group {
+    margin-bottom: 20px;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    border-radius: 5px;
+    background: var(--main-content-color);
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--highlight-color);
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--highlight-color);
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.button-group button {
+    background-color: var(--highlight-color);
+    color: var(--text-color);
+    border: none;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.button-group button:hover {
+    background-color: #c43d52;
+    transform: translateY(-2px);
+}
+.button-group .mode-btn:nth-child(2){
+    background-color: var(--accent-color);
+}
+.button-group .mode-btn:nth-child(2):hover{
+    background-color: #438a99;
+}
+.button-group .reset-btn {
+    background-color: #4CAF50;
+}
+.button-group .reset-btn:hover {
+    background-color: #45a049;
+}
+
+/* 추가된 모드 설명 스타일 */
+.instructions {
+    background-color: rgba(15, 52, 96, 0.3);
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 15px;
+    border: 1px solid var(--main-content-color);
+}
+.instructions h3 {
+    margin-top: 0;
+    color: var(--accent-color);
+    font-size: 1.1em;
+    padding-bottom: 5px;
+}
+.instructions p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+.instructions strong {
+    color: var(--text-color);
+    margin-right: 5px;
+}
+
+#info-panel {
+    background-color: rgba(15, 52, 96, 0.5);
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: auto;
+    border: 1px solid var(--accent-color);
+    box-shadow: inset 0 0 10px rgba(83, 168, 182, 0.3);
+}
+
+#info-panel h3 {
+    margin-top: 0;
+    color: var(--accent-color);
+    font-size: 1.2em;
+    border-bottom: 1px dashed var(--accent-color);
+    padding-bottom: 5px;
+}
+#info-panel p {
+    margin: 8px 0;
+    font-size: 0.95em;
+}
+#info-panel span {
+    font-weight: bold;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#canvas-container {
+    flex-grow: 1;
+    border: 2px solid var(--accent-color);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.bottom-panel {
+    height: 200px;
+    display: flex;
+    gap: 20px;
+}
+
+.status-panel, .log-panel {
+    background-color: var(--sidebar-color);
+    border-radius: 5px;
+    padding: 15px;
+    box-sizing: border-box;
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--accent-color);
+}
+
+.status-panel h3, .log-panel h3 {
+    margin-top: 0;
+    color: var(--accent-color);
+    text-align: center;
+    border-bottom: 1px dashed var(--accent-color);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+.status-panel h3 .fas, .log-panel h3 .fas {
+    margin-right: 8px;
+}
+
+.table-container {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+#uav-status-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+#uav-status-table th, #uav-status-table td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid var(--main-content-color);
+}
+#uav-status-table th {
+    background-color: var(--main-content-color);
+    color: var(--accent-color);
+}
+#uav-status-table tbody tr:hover {
+    background-color: rgba(83, 168, 182, 0.1);
+}
+
+/* UAV 상태 색상 */
+.status-편대비행 { color: var(--accent-color); }
+.status-임무중 { color: var(--safe-color); }
+.status-편대복귀중 { color: var(--warning-color); }
+.status-파괴됨 { color: var(--highlight-color); font-weight: bold; }
+
+#event-log {
+    flex-grow: 1;
+    background-color: rgba(0,0,0,0.3);
+    padding: 10px;
+    overflow-y: scroll;
+    font-size: 13px;
+    border-radius: 3px;
+    color: #bbb;
+}
+#event-log p {
+    margin: 0 0 5px 0;
+}
+#event-log p:first-child {
+    color: var(--highlight-color);
+    font-weight: bold;
+}
+
+/* 스크롤바 디자인 */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--main-content-color); border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--highlight-color); }
